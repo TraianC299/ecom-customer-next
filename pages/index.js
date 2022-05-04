@@ -147,7 +147,7 @@ function App(props) {
         <StepperBar  style={{width:`${step/5*100}%`, background: data.themeColor}}></StepperBar>
           <VariantsTabsContainer>
             <VariantsTabs setSelected={setStep} selected={step} screens={
-              [...stepsComponents.map((name, index)=>{const NewComponentS = pages[name]; return <NewComponentS index={index}></NewComponentS>})]
+              [...stepsComponents.map((name, index)=>{const NewComponentS = pages[name]; return <NewComponentS key={index} index={index}></NewComponentS>})]
               }>
                 
               </VariantsTabs>
