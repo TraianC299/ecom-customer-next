@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { COLOR } from '../../Contexts/DataContext'
+import { useData } from '../../pages'
 import { BORDERCOLOR} from '../../Styles'
 
 
@@ -20,6 +20,7 @@ box-shadow: 0px 0px 0px 0.5px ${BORDERCOLOR};
 `
 
 const Option = ({children, id , selectedOptions, setSelectedOptions, single, className}) => {
+    const {data} = useData()
     const isSelected = single?selectedOptions==id:selectedOptions.includes(id)
     const add = () => {
         if(single){
@@ -30,7 +31,7 @@ const Option = ({children, id , selectedOptions, setSelectedOptions, single, cla
     }
 
     return (
-        <OptionDiv className={className} style={{boxShadow:isSelected?`0px 0px 0px 2px ${COLOR}`:``}}  onClick={()=>add()}>
+        <OptionDiv className={className} style={{boxShadow:isSelected?`0px 0px 0px 2px ${data.themeColor}`:``}}  onClick={()=>add()}>
             {children}
         </OptionDiv>
     )

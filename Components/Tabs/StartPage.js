@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import {  BLACK, DARKGREY, device, WHITE } from '../../Styles'
 import Loading from '../../Components/Utilities/Loading'
-import { useData, COLOR } from '../../Contexts/DataContext'
+import { useData, COLOR } from '../../pages'
 
 
 const StartPageContainer = styled.div`
@@ -59,15 +59,14 @@ const checkBrightness = (c) =>{
 
 
 const StartPage = () => {
-    const {data, loading} = useData()
+    const {data} = useData()||{data:{}}
 
-    
   return (
-    <StartPageContainer style={{backgroundColor: COLOR}}>
+    <StartPageContainer style={{backgroundColor: data.themeColor}}>
         <LogoContainer>
-            {loading?<Loading></Loading>:<img src={data.logo} alt="logo"/>}
+            <img src={data.logo} alt="logo"/>
         </LogoContainer>
-        { <p style={{color:!checkBrightness(data.themeColor)?BLACK:WHITE}}>{loading? "...":`Welcome to ${data.title}`}</p>}
+         <p style={{color:!checkBrightness(data.themeColor)?BLACK:WHITE}}>Welcome to {data.title}</p>
     </StartPageContainer>
   )
 }

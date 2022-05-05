@@ -2,7 +2,7 @@ import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
-import { useData } from '../../../../Contexts/DataContext'
+import { useData } from '../../../../pages'
 import { DARKGREY , GREYWHITE} from '../../../../Styles'
 
 

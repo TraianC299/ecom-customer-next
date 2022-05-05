@@ -2,7 +2,7 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 import styled from 'styled-components'
-import { useData } from '../../Contexts/DataContext'
+import { useData } from '../../pages'
 import { DARKGREY, device, rotate } from '../../Styles'
 // import translate from '../i18n/messages/translate'
 

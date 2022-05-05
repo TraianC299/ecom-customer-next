@@ -1,8 +1,8 @@
 
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
-import { useData, COLOR } from '../../Contexts/DataContext'
 import { useOrderContext } from '../../Contexts/OrderContext'
+import { useData, COLOR } from '../../pages'
 import { BLACK, DARKGREY, device, Padding, RED  } from '../../Styles'
 
 

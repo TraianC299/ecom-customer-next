@@ -2,8 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 // import translate from '../../i18n/messages/translate'
 import {  device, GREYWHITE, Padding } from '../../../Styles'
-import { COLOR } from '../../../Contexts/DataContext'
 import { useOrderContext } from '../../../Contexts/OrderContext'
+import {  useData } from '../../../pages'
+
+
 
 const DatesContainer  = styled.div`
 display: flex;
@@ -38,6 +40,7 @@ function range(start, end) {
 }
 
 const TimeOptionsPage = () => {
+  const {data} = useData()
   const {selectedDate, setSelectedDate} = useOrderContext()
     const today = new Date()
 
@@ -45,7 +48,7 @@ const TimeOptionsPage = () => {
       <Padding>
     {/* <h2 className="h4">{translate("When do you want your product to be delivered?")}</h2> */}
     <DatesContainer>
-    <DateStyle style={{background:new Date().getDate()==selectedDate.getDate()?COLOR:""}}  onClick={()=>setSelectedDate(new Date())}>{"Today"}</DateStyle>
+    <DateStyle style={{background:new Date().getDate()==selectedDate.getDate()?data.themeColor:""}}  onClick={()=>setSelectedDate(new Date())}>{"Today"}</DateStyle>
       {[...Array(29).keys()].map((date, index) => <DateInstance 
       selectedDate={selectedDate} 
       index={index} 

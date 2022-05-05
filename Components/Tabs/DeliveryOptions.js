@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { useData } from '../../Contexts/DataContext';
 import { useOrderContext } from '../../Contexts/OrderContext';
+import { useData } from '../../pages';
 import { InputButtonsGrid, Padding, RED } from '../../Styles';
 // import {   InputButtonsGrid, Padding, RED } from '../Styles';
 import Option from '../Input/Option';

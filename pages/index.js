@@ -1,4 +1,4 @@
-import React, {  useEffect, useState } from 'react';
+import React, {  useContext, useEffect, useState } from 'react';
 import styled from "styled-components"
 import Button from '../Components/Buttons/Button';
 // import { I18nProvider } from "./i18n/index"
@@ -13,19 +13,31 @@ import LanguagePage from '../Components/Tabs/LanguagePage';
 import TimeOptionsPage from '../Components/Tabs/TimeOptions/TimeOptionsPage';
 import { LanguageProvider, useLanguage } from '../Contexts/LnaguageContext';
 import { device, LIGHTGREY, WHITE } from '../Styles';
-import { useData, COLOR, DataProvider } from '../Contexts/DataContext';
 import { useRouter } from 'next/router';
+import absoluteUrl from 'next-absolute-url'
 
 
 
-export const getStaticProps =  ({locale}) => {
-  return {
-    props: {
-      locale
+
+export async function getServerSideProps  (context)  {
+  const { origin } = absoluteUrl(context.req)
+    const shopName = origin.split("/")[2].split(".")[0]
+    const response = await fetch(`https://commo-store.com/api/stores/${shopName}`)
+    const data = await response.json()
+    return {
+        props: {
+            salam:"frumos",
+            data:data.data
+        }
     }
-  }
 }
 
+
+const DataContext = React.createContext()
+
+export const useData=()=>{
+  return useContext(DataContext)
+}
 
 const Container = styled.div`
 width: 100%;
@@ -54,7 +66,6 @@ width: 100%;
 
 const StepperBar  = styled.div`
 height: 5px;
-background-color: ${COLOR};
 position: fixed;
 top:0;
 transition: 0.2s;
@@ -112,10 +123,11 @@ const pagesWithoutDeliveryOptions = [
   "customerDataPage",
   "orderOverview",
 ]
-function App(props) {
+function App() {
   const {data} = useData()
   const {setNextButtonClick, step, setStep, disable , success} = useOrderContext()
   const [stepsComponents, setStepsComponents] = useState([...pagesWithoutDeliveryOptions])
+
 
 
 
@@ -134,7 +146,6 @@ function App(props) {
 
  useEffect(()=>{
    if(data.deliveryOption==3){
-
      setStepsComponents([...insert(pagesWithoutDeliveryOptions, 4, "deliveryOptions")])
    }
  },[data])
@@ -153,7 +164,7 @@ function App(props) {
               </VariantsTabs>
           </VariantsTabsContainer>
           {success?null:<Navigation>
-          {step==0?null:<Button disable={success} onClick={()=>setStep(previous=>--previous)} style={{color:COLOR, background:WHITE, border:"1px solid "+COLOR}}>Back</Button>}
+          {step==0?null:<Button disable={success} onClick={()=>setStep(previous=>--previous)} style={{color:data.themeColor, background:WHITE, border:"1px solid "+data.themeColor}}>Back</Button>}
           <Button style={{background: disable?LIGHTGREY:data.themeColor}} onClick={(e)=>nextFunction(e)}>{step==0?"Start":"Next"}</Button>
           </Navigation>}
           
@@ -163,11 +174,13 @@ function App(props) {
 }
 
 
-const DataContextApp = () => {
+const DataContextApp = (props) => {
   return <LanguageProvider>
-    <DataProvider><OrderProvider>
+    <DataContext.Provider value={{data:props.data}}>
+      <OrderProvider>
       <App></App>
-    </OrderProvider></DataProvider>
+    </OrderProvider>
+    </DataContext.Provider>
   </LanguageProvider>
 }
 export default DataContextApp;

@@ -2,12 +2,14 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { useData } from '../../../../Contexts/DataContext'
 import { useOrderContext } from '../../../../Contexts/OrderContext'
 import useDidMountEffect from '../../../../Hooks/useDidMountEffect'
 import { DARKGREY, greyBorder, RED } from '../../../../Styles'
 import QuantitySelector, { Square } from './QuantitySelector'
 import {getItemById} from '../../../../Utils/UtilityFunctions'
+import { useData } from '../../../../pages'
+
+
 
 const NewScrollContainer = styled.div`
 padding: 0px 0px 10px 0px;

@@ -7,7 +7,7 @@ import {  BLACK, BORDERCOLOR, DARKGREY, Padding } from '../../../Styles'
 import { useOrderContext } from '../../../Contexts/OrderContext'
 import Loading from '../../Utilities/Loading'
 import useDidMountEffect from '../../../Hooks/useDidMountEffect'
-import { useData } from '../../../Contexts/DataContext'
+import { useData } from '../../../pages'
 
 
 

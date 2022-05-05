@@ -4,7 +4,7 @@ import styled from "styled-components"
 import { BLACK, DARKGREY, LIGHTGREY, YELLOW  } from '../../Styles'
 import CircleButton from '../Buttons/CircleButton'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { COLOR } from '../../Contexts/DataContext'
+import { COLOR } from '../../pages'
 
 
 

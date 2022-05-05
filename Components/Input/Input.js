@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from "styled-components"
+import { useData } from '../../pages';
 import {  DARKGREY, BORDERCOLOR, GREYWHITE, RED  } from '../../Styles';
-import { COLOR } from '../../Contexts/DataContext';
 
 const Container = styled.div`
 display: flex;
@@ -36,7 +36,6 @@ const InputStyle = styled.input`
  
   
   :focus{
-    border: 2px solid ${COLOR};
     + label{
       transform: translateY(0px);
       font-size: 0.7rem !important;
@@ -58,7 +57,7 @@ margin-left: 5px;
 
 
 const Input = ({value, setValue, label, type, error, setError, disabled, defaultValue, rows, rowsMax, className, width, helperText, borderColor, validation, unity, placeholder, ...props}) => {
-
+  const {data} = useData()
     function handleChange (e){
       e.preventDefault()
     
